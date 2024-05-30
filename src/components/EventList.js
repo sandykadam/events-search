@@ -3,12 +3,16 @@ import React from 'react';
 const EventList = ({ events }) => (
   <div>
     {events.map(event => (
-      <div key={event.event_id}>
-        <h3>{event.event_title}</h3>
-        <p>{event.event_start_date}</p>
-        <p><a href={event.event_url}>{event.event_url}</a></p>
-        <p>{event.event_topic_ref_id}</p>
-        <p>{event.event_twitter_id}</p>
+      <div className="single-job" key={event.event_id}>                        
+        <div className="job-content">
+            <h4><a href="{event.event_url}">{event.event_title}</a></h4>
+            <p><span class="time">Full-Time</span></p>
+            <ul>
+                <li><i className="lni lni-website"></i><a href="#"> {event.event_topic}</a></li>
+                <li><i className="lni lni-dollar"></i> {event.event_start_date}</li>
+                <li><i className="lni lni-map-marker"></i> {event.event_city_name} {event.event_country}</li>
+            </ul>
+        </div>
       </div>
     ))}
   </div>

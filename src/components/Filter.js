@@ -22,63 +22,50 @@ const Filter = ({ onFilter }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <input
-        type="text"
-        name="keyword"
-        placeholder="Search by keyword"
-        value={filters.keyword}
-        onChange={handleChange}
-        style={styles.input}
-      />
-      <input
-        type="month"
-        name="date"
-        value={filters.date}
-        onChange={handleChange}
-        style={styles.input}
-      />
-      <input
-        type="text"
-        name="country"
-        placeholder="Country ID"
-        value={filters.country}
-        onChange={handleChange}
-        style={styles.input}
-      />
-      <input
-        type="text"
-        name="topic"
-        placeholder="Topic ID"
-        value={filters.topic}
-        onChange={handleChange}
-        style={styles.input}
-      />
-      <button type="submit" style={styles.button}>Filter</button>
-    </form>
+    <div className="search-job">
+            <div className="container">
+              <form onSubmit={handleSubmit}>
+                <div className="search-nner">
+                    <div className="row">
+                      
+                        <div className="col-lg-5 col-md-5 col-xs-12">
+                             <input
+                                type="text"
+                                className="form-control"
+                                name="keyword"
+                                placeholder="Search by keyword"
+                                value={filters.keyword}
+                                onChange={handleChange}
+                              />
+                        </div>
+                       
+                        <div className="col-lg-5 col-md-5 col-xs-12">
+                                 <input
+                                    type="text"
+                                    className="form-control"
+                                    name="topic"
+                                    placeholder="Topic ID"
+                                    value={filters.topic}
+                                    onChange={handleChange}
+                                  />
+                        </div>
+                        <div className="col-lg-2 col-md-2 col-xs-12 button">
+                            <button type="submit" className="btn btn-common float-right">Filter</button>
+                        </div>
+                    </div>
+                    <div className="row">
+                       <div className="col-xs-12">
+                       <ul className="browse-resumes resume-item skills">
+                          <li>PHP</li>
+                          <li><a href="/php"> Javascript <span className="notifi">15</span></a></li>
+                          <li><a href="/php"> Angular <span className="notifi">5</span></a></li>
+                        </ul> 
+                       </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
   );
 };
-
-const styles = {
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: '20px'
-  },
-  input: {
-    margin: '5px 0',
-    padding: '10px',
-    fontSize: '16px'
-  },
-  button: {
-    padding: '10px',
-    fontSize: '16px',
-    backgroundColor: '#007BFF',
-    color: '#FFFFFF',
-    border: 'none',
-    cursor: 'pointer',
-    marginTop: '10px'
-  }
-};
-
 export default Filter;

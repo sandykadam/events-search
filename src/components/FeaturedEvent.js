@@ -6,19 +6,21 @@ const FeaturedEvent = ({ events }) => {
 
   return (
     <div>
-      <h2>Featured Event</h2>
-      {featuredEvent ? (
-        <div key={featuredEvent.event_id} style={styles.featuredContainer}>
-          <h3>{featuredEvent.event_title}</h3>
-          <p>{new Date(featuredEvent.event_start_date).toLocaleDateString()}</p>
-          <p><a href={featuredEvent.event_url} target="_blank" rel="noopener noreferrer">{featuredEvent.event_url}</a></p>
-          <p>Topic ID: {featuredEvent.event_topic_ref_id}</p>
-          <p>Twitter: {featuredEvent.event_twitter_id}</p>
+     {featuredEvent ? (
+      <div className="single-job" key={featuredEvent.event_id}>                    
+          <div className="job-content">
+              <h4><a href="{featuredEvent.event_url}">{featuredEvent.event_title}</a></h4>
+              <ul>
+                  <li><i className="lni lni-website"></i><a href="#"> {featuredEvent.event_topic}</a></li>
+                  <li><i className="lni lni-dollar"></i> {featuredEvent.event_start_date}</li>
+                  <li><i className="lni lni-map-marker"></i> {featuredEvent.event_city_name} {featuredEvent.event_country}</li>
+              </ul>
+          </div>
         </div>
-      ) : (
-        <p>No featured event available.</p>
-      )}
-    </div>
+        ) : (
+          <p>No featured event available.</p>
+        )}
+        </div>
   );
 };
 

@@ -8,7 +8,7 @@ import events from '../data/events.json'; // Assume the events JSON is stored lo
 const HomePage = () => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const eventsPerPage = 3;
+  const eventsPerPage = 10;
 
   useEffect(() => {
     setFilteredEvents(events);
@@ -54,15 +54,25 @@ const HomePage = () => {
 
   return (
     <div>
-      <FeaturedEvent events={filteredEvents} />
-      <Filter onFilter={handleFilter} />
-      <EventList events={currentEvents} />
-      <Pagination
-        totalEvents={filteredEvents.length}
-        eventsPerPage={eventsPerPage}
-        currentPage={currentPage}
-        onPageChange={(page) => setCurrentPage(page)}
-      />
+      <section className="find-job section">
+        <Filter onFilter={handleFilter} />
+        <div className="container">
+          <div className="single-head">
+                <div className="row">
+                  <div className="col-12">
+                    <FeaturedEvent events={filteredEvents} />
+                    <EventList events={currentEvents} />
+                  </div>
+                </div>
+          </div>
+          <Pagination
+            totalEvents={filteredEvents.length}
+            eventsPerPage={eventsPerPage}
+            currentPage={currentPage}
+            onPageChange={(page) => setCurrentPage(page)}
+          />
+        </div>
+      </section>
     </div>
   );
 };
