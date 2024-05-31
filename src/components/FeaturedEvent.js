@@ -1,37 +1,30 @@
 import React from 'react';
+import moment from 'moment';
 
-const FeaturedEvent = ({ events }) => {
-  // Assuming the first event in the sorted list is the featured event.
-  const featuredEvent = events[0];
-
+const FeaturedEvent = ({ event }) => {
   return (
-    <div>
-     {featuredEvent ? (
-      <div className="single-job" key={featuredEvent.event_id}>                    
+      <div className="single-job" key={event.event_id}>                    
           <div className="job-content">
-              <h4><a href="{featuredEvent.event_url}">{featuredEvent.event_title}</a></h4>
+              <h4><a href="{event.event_url}">{event.event_title}</a> FEATURED </h4>
+             <ul>
+                <li><i className="lni lni-website"></i><a href="#"> {event.event_topic}</a></li>
+                <li><i className="lni lni-dollar"></i> {moment(event.event_start_date).format('MMMM Do, YYYY')} - {moment(event.event_end_date).format('MMMM Do, YYYY')}
+</li>
+                <li><i className="lni lni-map-marker"></i> {event.event_city_name} {event.event_country}</li>
+            </ul>
+          </div>
+          { event.event_virtual === 1 ?
+          <div className="job-button">
               <ul>
-                  <li><i className="lni lni-website"></i><a href="#"> {featuredEvent.event_topic}</a></li>
-                  <li><i className="lni lni-dollar"></i> {featuredEvent.event_start_date}</li>
-                  <li><i className="lni lni-map-marker"></i> {featuredEvent.event_city_name} {featuredEvent.event_country}</li>
+                  <li><span>Virtual</span></li>
               </ul>
           </div>
+          :
+          <div></div>
+          }
         </div>
-        ) : (
-          <p>No featured event available.</p>
-        )}
-        </div>
-  );
+    );
 };
 
-const styles = {
-  featuredContainer: {
-    border: '2px solid #ddd',
-    borderRadius: '8px',
-    padding: '16px',
-    margin: '16px 0',
-    backgroundColor: '#f9f9f9'
-  }
-};
 
 export default FeaturedEvent;

@@ -6,12 +6,19 @@ import Pagination from '../components/Pagination';
 import events from '../data/events.json'; // Assume the events JSON is stored locally for simplicity
 
 const HomePage = () => {
+  const [featuredEvents, setFeaturedEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const eventsPerPage = 10;
 
   useEffect(() => {
-    setFilteredEvents(events);
+    const today = new Date().toISOString().split('T')[0]; // Get YYYY-MM-DD format for today
+    const upcomingEvents = events.filter(event => new Date(event.event_start_date).toISOString().split('T')[0] >= today);
+    const sortedEvents = upcomingEvents.sort((a, b) => new Date(a.event_start_date) - new Date(b.event_start_date));
+    const nonFeaturedEvents = sortedEvents.filter(event => event.featured_event !== 1);
+    const featured = sortedEvents.filter(event => event.featured_event === "1"); // Check for featured_event value of 1
+    setFeaturedEvents(featured);
+    setFilteredEvents(nonFeaturedEvents);
   }, []);
 
   const handleFilter = (filters) => {
@@ -60,7 +67,13 @@ const HomePage = () => {
           <div className="single-head">
                 <div className="row">
                   <div className="col-12">
-                    <FeaturedEvent events={filteredEvents} />
+                      {featuredEvents.length > 0 ? (
+                        featuredEvents.map(event => (
+                            <FeaturedEvent key={event.id} event={event} />
+                          ))
+                        ) : (
+                        null
+                      )}
                     <EventList events={currentEvents} />
                   </div>
                 </div>
