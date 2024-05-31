@@ -1,24 +1,6 @@
 import React from 'react';
 
-const Pagination = ({ totalEvents, eventsPerPage, currentPage, onPageChange }) => {
-  var totalPages = Math.ceil(totalEvents / eventsPerPage);
-  var renderPrevBtn, renderNextBtn, prevPage, nextPage;
-  // Prev page
-  if(currentPage === 1) {
-    renderPrevBtn = <li key={currentPage}><i className="lni lni-arrow-left"></i></li>
-  }
-  else{
-    prevPage = currentPage -1;
-    renderPrevBtn = <li key={prevPage}><a href="#" onClick={() => onPageChange(prevPage)}><i className="lni lni-arrow-left"></i></a></li>
-  }
-  // Next page
-  if(currentPage === totalPages) {
-    renderNextBtn = <li key={totalPages}><i className="lni lni-arrow-right"></i></li>
-  }
-  else{
-    nextPage = currentPage +1;
-    renderNextBtn = <li key={nextPage}><a href="#" onClick={() => onPageChange(nextPage)}><i className="lni lni-arrow-right"></i></a></li>
-  }
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= totalPages; i++) {
@@ -26,19 +8,23 @@ const Pagination = ({ totalEvents, eventsPerPage, currentPage, onPageChange }) =
   }
 
   return (
-    <div className="row">
+ <div className="row">
         <div className="col-12">
             <div className="pagination center">
                 <ul className="pagination-list">
-                    { renderPrevBtn }
-                      {pageNumbers.map(number => (
-                      <li key={number} className={`${currentPage === number ? "active" : ""}`}><a href="#" onClick={() => onPageChange(number)}>{number}</a></li>
-                      ))}
-                    { renderNextBtn }
+                <li key={currentPage}><a href="#" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}><i className="lni lni-arrow-left"></i></a></li>
+                  {pageNumbers.map(number => (
+                 <li key={number} className={`${currentPage === number ? "active" : ""}`}><a href="#" onClick={() => onPageChange(number)}>{number}</a></li>
+               ))}
+              <li key={currentPage + 1}><a href="#"  onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}><i className="lni lni-arrow-right"></i></a></li>
+    
                 </ul>
             </div>
         </div>
     </div>       
+
+
+      
   );
 };
 
