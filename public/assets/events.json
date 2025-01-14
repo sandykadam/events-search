@@ -8,7 +8,7 @@
         "event_topic": "Community\/Networking",
         "event_topic_slug": "community-networking",
         "event_topic_ref_id": "29",
-        "event_virtual": "0",
+        "event_virtual": "1",
         "event_cfp_url": "https:\/\/sessionize.com\/android-makers-by-droidcon-2025",
         "event_cfp_end_date": "2025-02-15",
         "event_twitter_id": "@AndroidMakersFR",
@@ -35,7 +35,7 @@
         "event_coc_url": "https:\/\/apiconference.net\/code-of-conduct",
         "event_languages": "EN",
         "event_social_hashtags": "",
-        "featured_event": "0",
+        "featured_event": "1",
         "event_city_name": "London",
         "event_country": "United Kingdom"
     },
@@ -195,7 +195,7 @@
         "event_coc_url": "",
         "event_languages": "EN",
         "event_social_hashtags": "",
-        "featured_event": "0",
+        "featured_event": "1",
         "event_city_name": "Munich",
         "event_country": "Germany"
     },
